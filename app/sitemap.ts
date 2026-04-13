@@ -1,0 +1,14 @@
+import type { MetadataRoute } from 'next';
+import { siteUrl } from '@/lib/seo';
+
+const routes = ['', '/about', '/academics', '/admissions', '/faculty', '/facilities', '/gallery', '/news', '/student-corner', '/contact', '/admin'];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+  return routes.map((route) => ({
+    url: `${siteUrl}${route}`,
+    lastModified: now,
+    changeFrequency: route === '' ? 'weekly' : 'monthly',
+    priority: route === '' ? 1 : 0.8
+  }));
+}
